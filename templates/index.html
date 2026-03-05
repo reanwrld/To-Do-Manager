@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>My Tasks</h1>
+        <p class="subtitle">Focus on what matters</p>
+
+        <form method="POST" class="input-group">
+            <input type="text" name="task_content" placeholder="Add a new task..." required>
+            <button type="submit">Add</button>
+        </form>
+
+        <ul id="taskList">
+        {% for task in tasks %}
+        <li>
+            {{ task }}
+            <a href="{{ url_for('delete_task', index=loop.index0) }}" class="delete-btn">Delete</a>
+        </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
